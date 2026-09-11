@@ -1,0 +1,39 @@
+{
+    "name": "asyntai/bagisto-ai-search",
+    "type": "bagisto-package",
+    "description": "Asyntai AI Search for Bagisto: a search bar that understands what shoppers mean, with live prices and stock from your own catalogue.",
+    "keywords": ["bagisto", "search", "ai", "ai search", "site search", "asyntai", "ecommerce"],
+    "license": "MIT",
+    "version": "1.0.0",
+    "homepage": "https://asyntai.com/ai-search/",
+    "support": {
+        "email": "hello@asyntai.com",
+        "docs": "https://asyntai.com/documentation/bagisto-ai-search/"
+    },
+    "authors": [
+        {
+            "name": "Asyntai",
+            "email": "hello@asyntai.com",
+            "homepage": "https://asyntai.com"
+        }
+    ],
+    "require": {
+        "php": "^8.1|^8.2|^8.3|^8.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "Asyntai\\Search\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Asyntai\\Search\\Providers\\SearchServiceProvider"
+            ]
+        },
+        "bagisto": {
+            "name": "Asyntai AI Search"
+        }
+    },
+    "minimum-stability": "stable"
+}

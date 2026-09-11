@@ -1,0 +1,7 @@
+dist/
+assets/
+__pycache__/
+build_zip.py
+dev_sync.py
+make_assets.py
+LISTING.md
