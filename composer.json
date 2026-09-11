@@ -4,7 +4,7 @@
     "description": "Asyntai AI Search for Bagisto: a search bar that understands what shoppers mean, with live prices and stock from your own catalogue.",
     "keywords": ["bagisto", "search", "ai", "ai search", "site search", "asyntai", "ecommerce"],
     "license": "MIT",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "homepage": "https://asyntai.com/ai-search/",
     "support": {
         "email": "hello@asyntai.com",

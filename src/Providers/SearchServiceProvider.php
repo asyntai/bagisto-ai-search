@@ -41,9 +41,15 @@ class SearchServiceProvider extends ServiceProvider
         $this->loadViewsFrom(__DIR__ . '/../Resources/views', 'asyntai-search');
         $this->loadTranslationsFrom(__DIR__ . '/../Resources/lang', 'asyntai-search');
 
-        /** @var Router $router */
-        $router = $this->app['router'];
-        $router->pushMiddlewareToGroup('web', InjectSearchBar::class);
+        // Added once EVERY provider has booted. Composer discovers this
+        // package before the application's own providers, and Bagisto's set
+        // up the `web` group after us; a middleware pushed too early is
+        // simply not there any more by the time a page is served.
+        $this->app->booted(function () {
+            /** @var Router $router */
+            $router = $this->app['router'];
+            $router->pushMiddlewareToGroup('web', InjectSearchBar::class);
+        });
 
         // Re-ask Asyntai whether the bar may render, every ten minutes where
         // the store runs the scheduler...
