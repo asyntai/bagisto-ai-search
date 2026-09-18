@@ -44,6 +44,9 @@ class Feed
     /** Longest description we send. Asyntai truncates again; this saves bandwidth. */
     public const MAX_DESCRIPTION = 2000;
 
+    /** Categories sent with the first page. Past this a shop is browsing, not searching. */
+    public const MAX_CATEGORIES = 300;
+
     private ProductRepository $products;
 
     private string $channel = '';
@@ -186,17 +189,113 @@ class Feed
             }
         }
 
-        return [
-            'status' => 200,
-            'body'   => [
-                'ok'       => true,
-                'store'    => $this->storeInfo(),
-                'page'     => $page,
-                'pages'    => $limit > 0 ? (int) ceil($total / $limit) : 1,
-                'total'    => $total,
-                'products' => $products,
-            ],
+        $body = [
+            'ok'       => true,
+            'store'    => $this->storeInfo(),
+            'page'     => $page,
+            'pages'    => $limit > 0 ? (int) ceil($total / $limit) : 1,
+            'total'    => $total,
+            'products' => $products,
         ];
+
+        // Sent once, with the first page. A shopper searching "outdoor
+        // clothing" wants the aisle, not only the four things on it, and the
+        // aisles are not products, so nothing else in the feed carries them.
+        if ($page === 1) {
+            $body['categories'] = $this->categories();
+        }
+
+        return ['status' => 200, 'body' => $body];
+    }
+
+    /**
+     * The store's own categories, as a shopper would browse them.
+     *
+     * Read straight from the tables rather than through the repository: this
+     * needs the names and addresses a visitor sees, in the default channel's
+     * locale, and nothing about the customer group or the current request.
+     *
+     * @return array<int, array>
+     */
+    private function categories(): array
+    {
+        try {
+            $rows = DB::table('categories')
+                ->join('category_translations', 'category_translations.category_id', '=', 'categories.id')
+                ->where('category_translations.locale', $this->locale)
+                ->where('categories.status', 1)
+                // The root is Bagisto's container for every other category.
+                // It has no page of its own that a shopper would land on.
+                ->whereNotNull('categories.parent_id')
+                ->orderBy('categories.position')
+                ->orderBy('categories.id')
+                ->limit(self::MAX_CATEGORIES)
+                ->get([
+                    'categories.id',
+                    'category_translations.name',
+                    'category_translations.slug',
+                    'category_translations.description',
+                ]);
+        } catch (\Throwable $e) {
+            // A catalogue is still worth sending without its aisles.
+            report($e);
+
+            return [];
+        }
+
+        $out = [];
+
+        foreach ($rows as $row) {
+            $name = trim((string) $row->name);
+            $slug = trim((string) $row->slug);
+
+            if ($name === '' || $slug === '') {
+                continue;
+            }
+
+            $count = $this->categoryProductCount((int) $row->id);
+
+            // An empty aisle is a dead end. The shopper would land on a page
+            // saying nothing is here.
+            if ($count < 1) {
+                continue;
+            }
+
+            $category = [
+                'id'       => (int) $row->id,
+                'name'     => $name,
+                'url'      => State::siteUrl() . '/' . ltrim($slug, '/'),
+                'products' => $count,
+            ];
+
+            $description = $this->plainText((string) ($row->description ?? ''));
+
+            if ($description !== '') {
+                $category['description'] = $description;
+            }
+
+            $out[] = $category;
+        }
+
+        return $out;
+    }
+
+    /**
+     * How many products a shopper would find in one category.
+     *
+     * Counted through the same visibility test as the feed itself, so a
+     * category holding nothing but disabled products reads as empty.
+     */
+    private function categoryProductCount(int $categoryId): int
+    {
+        try {
+            return (int) $this->visible()
+                ->join('product_categories', 'product_categories.product_id', '=', 'product_flat.product_id')
+                ->where('product_categories.category_id', $categoryId)
+                ->count();
+        } catch (\Throwable $e) {
+            return 0;
+        }
     }
 
     /**
