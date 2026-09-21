@@ -11,6 +11,7 @@ Results come from your own catalogue and your pages. Prices, stock and product l
 * **Products, categories and pages in one box.** A shopper searching "outdoor clothing" is offered the category itself as well as the products on it, and shipping terms, size guides and return policies are found alongside them.
 * **Takes the place of your search box.** One click in the admin and the bar sits where your theme's search box was. Pressing Enter without picking a result still opens your usual search page.
 * **Never leaves your store without search.** If your allowance runs out or the service is unreachable, the theme's own search box is back in place.
+* **Speaks your admin's language.** The admin screen is translated into all twenty-two languages the Bagisto admin ships with.
 
 ## Requirements
 
