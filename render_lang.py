@@ -30,6 +30,7 @@ HEADER = ("<?php\n\n"
 # same order and a reviewer can read two files side by side.
 SHAPE = [
     ('menu', ['title']),
+    ('acl', ['connection', 'settings']),
     (None, ['title']),
     ('hero', ['title', 'text', 'button', 'point_1', 'point_2', 'point_3']),
     ('headings', ['live', 'setting_up', 'blocked', 'unknown']),
@@ -44,7 +45,8 @@ SHAPE = [
                   'save', 'saved']),
     ('theme', ['title', 'text']),
     ('js', ['preparing', 'waiting', 'saving', 'blocked', 'open_link', 'failed',
-            'timeout', 'signed_out', 'confirm', 'unreachable', 'expired']),
+            'timeout', 'signed_out', 'confirm', 'unreachable', 'expired',
+            'forbidden']),
 ]
 
 # Placeholders Laravel substitutes. A translation that loses one renders the

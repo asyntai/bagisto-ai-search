@@ -12,6 +12,11 @@ return [
             'title' => 'Pencarian AI',
         ],
 
+        'acl' => [
+            'connection' => 'Hubungkan dan putuskan',
+            'settings'   => 'Ubah pengaturan',
+        ],
+
         'title' => 'Pencarian AI Asyntai',
 
         'hero' => [
@@ -90,6 +95,7 @@ return [
             'confirm'     => 'Putuskan sambungan toko ini dari Asyntai? Bilah pencarian berhenti, dan pencarian toko biasa Anda kembali bekerja.',
             'unreachable' => 'Tidak dapat menghubungi Asyntai. Periksa apakah toko ini dapat mengirim permintaan HTTPS keluar.',
             'expired'     => 'Percobaan sambungan ini sudah kedaluwarsa. Silakan tekan Hubungkan lagi.',
+            'forbidden'   => 'Peran Anda tidak mengizinkan tindakan ini. Minta pemilik toko memberi peran Anda izin Pencarian AI.',
         ],
 
     ],

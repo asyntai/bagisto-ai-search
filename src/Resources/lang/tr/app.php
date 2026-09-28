@@ -12,6 +12,11 @@ return [
             'title' => 'Yapay Zekâ Arama',
         ],
 
+        'acl' => [
+            'connection' => 'Bağlanma ve bağlantıyı kesme',
+            'settings'   => 'Ayarları değiştirme',
+        ],
+
         'title' => 'Asyntai Yapay Zekâ Arama',
 
         'hero' => [
@@ -90,6 +95,7 @@ return [
             'confirm'     => 'Bu mağazanın Asyntai bağlantısı kesilsin mi? Arama çubuğu durur ve her zamanki mağaza aramanız devreye girer.',
             'unreachable' => 'Asyntai\'ye ulaşılamadı. Bu mağazanın dışarıya HTTPS isteği gönderebildiğini kontrol edin.',
             'expired'     => 'Bu bağlantı denemesinin süresi doldu. Lütfen tekrar Bağla\'ya basın.',
+            'forbidden'   => 'Rolünüz bu işleme izin vermiyor. Mağaza sahibinden rolünüze Yapay Zekâ Arama iznini vermesini isteyin.',
         ],
 
     ],

@@ -12,6 +12,11 @@ return [
             'title' => 'AI 搜索',
         ],
 
+        'acl' => [
+            'connection' => '连接和断开连接',
+            'settings'   => '更改设置',
+        ],
+
         'title' => 'Asyntai AI 搜索',
 
         'hero' => [
@@ -90,6 +95,7 @@ return [
             'confirm'     => '要断开此店铺与 Asyntai 的连接吗？搜索栏将停止，您原本的店铺搜索会恢复。',
             'unreachable' => '无法连接到 Asyntai。请检查该店铺是否可以发出对外的 HTTPS 请求。',
             'expired'     => '本次连接已过期，请重新点击“连接”。',
+            'forbidden'   => '您的角色无权执行此操作。请让店主为您的角色授予 AI 搜索 权限。',
         ],
 
     ],

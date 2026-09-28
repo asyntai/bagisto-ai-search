@@ -20,10 +20,12 @@ declare(strict_types=1);
 
 namespace Asyntai\Search\Providers;
 
+use Asyntai\Search\CatalogueChanged;
 use Asyntai\Search\Http\Middleware\InjectSearchBar;
 use Asyntai\Search\State;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Routing\Router;
+use Illuminate\Support\Facades\Event;
 use Illuminate\Support\ServiceProvider;
 
 class SearchServiceProvider extends ServiceProvider
@@ -31,6 +33,11 @@ class SearchServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->mergeConfigFrom(__DIR__ . '/../Config/admin-menu.php', 'menu.admin');
+
+        // The permissions a role can be given under Settings > Roles. The
+        // admin menu hides the entry from a role without `asyntai-search`,
+        // and SearchController checks the right one on every action.
+        $this->mergeConfigFrom(__DIR__ . '/../Config/acl.php', 'acl');
     }
 
     public function boot(): void
@@ -49,6 +56,26 @@ class SearchServiceProvider extends ServiceProvider
             /** @var Router $router */
             $router = $this->app['router'];
             $router->pushMiddlewareToGroup('web', InjectSearchBar::class);
+        });
+
+        // A product created, saved, disabled or deleted: Asyntai reads the
+        // catalogue again straight away instead of at the next daily pass,
+        // so search stops showing a product the shop no longer sells.
+        foreach (['catalog.product.create.after', 'catalog.product.update.after',
+                  'catalog.product.delete.after'] as $event) {
+            Event::listen($event, [CatalogueChanged::class, 'mark']);
+        }
+
+        $this->app->terminating(function () {
+            if (! CatalogueChanged::pending()) {
+                return;
+            }
+
+            if (function_exists('fastcgi_finish_request')) {
+                @fastcgi_finish_request();
+            }
+
+            CatalogueChanged::flush();
         });
 
         // Re-ask Asyntai whether the bar may render, every ten minutes where

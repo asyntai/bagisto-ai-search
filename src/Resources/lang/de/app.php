@@ -12,6 +12,11 @@ return [
             'title' => 'KI-Suche',
         ],
 
+        'acl' => [
+            'connection' => 'Verbinden und trennen',
+            'settings'   => 'Einstellungen ändern',
+        ],
+
         'title' => 'Asyntai KI-Suche',
 
         'hero' => [
@@ -90,6 +95,7 @@ return [
             'confirm'     => 'Verbindung dieses Shops zu Asyntai trennen? Die Suchleiste wird beendet, und Ihre gewohnte Shop-Suche übernimmt wieder.',
             'unreachable' => 'Asyntai ist nicht erreichbar. Prüfen Sie, ob dieser Shop ausgehende HTTPS-Anfragen stellen darf.',
             'expired'     => 'Dieser Verbindungsversuch ist abgelaufen. Bitte drücken Sie erneut auf Verbinden.',
+            'forbidden'   => 'Ihre Rolle erlaubt das nicht. Bitten Sie den Shopinhaber, ihr die Berechtigung für die KI-Suche zu geben.',
         ],
 
     ],

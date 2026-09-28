@@ -12,6 +12,11 @@ return [
             'title' => 'AI-zoeken',
         ],
 
+        'acl' => [
+            'connection' => 'Verbinden en ontkoppelen',
+            'settings'   => 'Instellingen wijzigen',
+        ],
+
         'title' => 'Asyntai AI-zoeken',
 
         'hero' => [
@@ -90,6 +95,7 @@ return [
             'confirm'     => 'Deze winkel loskoppelen van Asyntai? De zoekbalk stopt en uw gewone winkelzoekfunctie neemt het over.',
             'unreachable' => 'We kunnen Asyntai niet bereiken. Controleer of deze winkel uitgaande HTTPS-verzoeken mag doen.',
             'expired'     => 'Deze verbindingspoging is verlopen. Druk opnieuw op Verbinden.',
+            'forbidden'   => 'Uw rol staat dit niet toe. Vraag de eigenaar van de winkel om uw rol de machtiging voor AI-zoeken te geven.',
         ],
 
     ],

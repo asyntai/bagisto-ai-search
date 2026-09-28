@@ -81,7 +81,10 @@
       "status.unreachable": "متجرك ما زال مرتبطًا. سنتحقق مرة أخرى قريبًا، ولم يتغير شيء في متجرك في هذه الأثناء.",
       "theme.text": "لوضع الشريط في المكان الذي تختاره، أضف هذا حيث ينبغي أن يظهر. يبقى المكان فارغًا ما دام الشريط متوقفًا.",
       "theme.title": "في قالبك",
-      "title": "بحث Asyntai بالذكاء الاصطناعي"
+      "title": "بحث Asyntai بالذكاء الاصطناعي",
+      "acl.connection": "الاتصال وقطع الاتصال",
+      "acl.settings": "تغيير الإعدادات",
+      "js.forbidden": "لا يسمح دورك بهذا الإجراء. اطلب من مالك المتجر منح دورك صلاحية بحث الذكاء الاصطناعي."
     },
     "bn": {
       "allowance": "এই মাসে আপনার :limit টি উত্তরের মধ্যে :left টি বাকি। অনুসন্ধান ও চ্যাটের উত্তর একই সীমা ভাগ করে নেয়।",
@@ -141,7 +144,10 @@
       "status.unreachable": "আপনার দোকান এখনও যুক্ত আছে। আমরা শীঘ্রই আবার দেখব, আর ইতিমধ্যে আপনার দোকানে কিছুই বদলায়নি।",
       "theme.text": "বারটি নিজের পছন্দের জায়গায় বসাতে, যেখানে সেটি দেখা উচিত সেখানে এটি যোগ করুন। বারটি বন্ধ থাকলে জায়গাটি ফাঁকা থাকে।",
       "theme.title": "আপনার থিমে",
-      "title": "Asyntai এআই অনুসন্ধান"
+      "title": "Asyntai এআই অনুসন্ধান",
+      "acl.connection": "সংযোগ ও সংযোগ বিচ্ছিন্ন",
+      "acl.settings": "সেটিংস পরিবর্তন",
+      "js.forbidden": "আপনার ভূমিকায় এটি করার অনুমতি নেই। স্টোরের মালিককে আপনার ভূমিকায় এআই অনুসন্ধানের অনুমতি দিতে বলুন।"
     },
     "ca": {
       "allowance": "Us queden :left de les :limit respostes mensuals. Les cerques i les respostes del xat comparteixen aquesta quota.",
@@ -201,7 +207,10 @@
       "status.unreachable": "La vostra botiga continua connectada. Ho tornarem a comprovar aviat i, mentrestant, no ha canviat res a la botiga.",
       "theme.text": "Per posar la barra on vulgueu, afegiu això al lloc on ha d'aparèixer. Mentre la barra estigui desactivada, aquell lloc queda buit.",
       "theme.title": "Al vostre tema",
-      "title": "Cerca amb IA d'Asyntai"
+      "title": "Cerca amb IA d'Asyntai",
+      "acl.connection": "Connectar i desconnectar",
+      "acl.settings": "Canviar la configuració",
+      "js.forbidden": "El vostre rol no permet fer això. Demaneu al propietari de la botiga que li doni el permís de Cerca amb IA."
     },
     "de": {
       "allowance": "Noch :left von :limit monatlichen Antworten. Suchanfragen und Chat-Antworten teilen sich dieses Kontingent.",
@@ -261,7 +270,10 @@
       "status.unreachable": "Ihr Shop ist weiterhin verbunden. Wir prüfen es in Kürze erneut, und in der Zwischenzeit hat sich in Ihrem Shop nichts geändert.",
       "theme.text": "Um die Suchleiste an eine Stelle Ihrer Wahl zu setzen, fügen Sie dies dort ein, wo sie erscheinen soll. Solange die Leiste aus ist, bleibt die Stelle leer.",
       "theme.title": "In Ihrem Theme",
-      "title": "Asyntai KI-Suche"
+      "title": "Asyntai KI-Suche",
+      "acl.connection": "Verbinden und trennen",
+      "acl.settings": "Einstellungen ändern",
+      "js.forbidden": "Ihre Rolle erlaubt das nicht. Bitten Sie den Shopinhaber, ihr die Berechtigung für die KI-Suche zu geben."
     },
     "es": {
       "allowance": "Le quedan :left de sus :limit respuestas mensuales. Las búsquedas y las respuestas del chat comparten esta cuota.",
@@ -321,7 +333,10 @@
       "status.unreachable": "Su tienda sigue conectada. Lo comprobaremos de nuevo en breve y, mientras tanto, nada ha cambiado en su tienda.",
       "theme.text": "Para colocar la barra donde usted quiera, añada esto en el sitio donde deba aparecer. Mientras la barra esté desactivada, el hueco queda vacío.",
       "theme.title": "En su tema",
-      "title": "Búsqueda IA de Asyntai"
+      "title": "Búsqueda IA de Asyntai",
+      "acl.connection": "Conectar y desconectar",
+      "acl.settings": "Cambiar los ajustes",
+      "js.forbidden": "Tu rol no permite hacer esto. Pide al propietario de la tienda que le dé el permiso de Búsqueda IA."
     },
     "fa": {
       "allowance": ":left پاسخ از :limit پاسخ این ماه باقی مانده است. جست‌وجوها و پاسخ‌های گفت‌وگو از یک سهمیه استفاده می‌کنند.",
@@ -381,7 +396,10 @@
       "status.unreachable": "فروشگاه شما همچنان متصل است. به‌زودی دوباره بررسی می‌کنیم و در این فاصله چیزی در فروشگاه شما تغییر نکرده است.",
       "theme.text": "برای گذاشتن نوار در جایی که خودتان می‌خواهید، این را در همان نقطه اضافه کنید. تا وقتی نوار خاموش است، آن نقطه خالی می‌ماند.",
       "theme.title": "در قالب شما",
-      "title": "جست‌وجوی هوش مصنوعی Asyntai"
+      "title": "جست‌وجوی هوش مصنوعی Asyntai",
+      "acl.connection": "اتصال و قطع اتصال",
+      "acl.settings": "تغییر تنظیمات",
+      "js.forbidden": "نقش شما اجازهٔ این کار را ندارد. از مالک فروشگاه بخواهید مجوز جست‌وجوی هوش مصنوعی را به نقش شما بدهد."
     },
     "fr": {
       "allowance": "Il vous reste :left réponses sur :limit ce mois-ci. Les recherches et les réponses du chat partagent ce quota.",
@@ -441,7 +459,10 @@
       "status.unreachable": "Votre boutique est toujours connectée. Nous vérifierons de nouveau sous peu, et rien n'a changé sur votre boutique entre-temps.",
       "theme.text": "Pour placer la barre où vous le souhaitez, ajoutez ceci à l'endroit voulu. L'emplacement reste vide tant que la barre est désactivée.",
       "theme.title": "Dans votre thème",
-      "title": "Recherche IA Asyntai"
+      "title": "Recherche IA Asyntai",
+      "acl.connection": "Connecter et déconnecter",
+      "acl.settings": "Modifier les réglages",
+      "js.forbidden": "Votre rôle ne permet pas cette action. Demandez au propriétaire de la boutique de lui accorder la permission Recherche IA."
     },
     "he": {
       "allowance": "נותרו :left מתוך :limit תשובות החודש. חיפושים ותשובות בצ'אט חולקים את אותה מכסה.",
@@ -501,7 +522,10 @@
       "status.unreachable": "החנות שלכם עדיין מחוברת. נבדוק שוב בקרוב, ובינתיים שום דבר בחנות לא השתנה.",
       "theme.text": "כדי למקם את השורה במקום שתבחרו, הוסיפו זאת היכן שהיא אמורה להופיע. כל עוד השורה כבויה, המקום נשאר ריק.",
       "theme.title": "בתבנית שלכם",
-      "title": "חיפוש AI של Asyntai"
+      "title": "חיפוש AI של Asyntai",
+      "acl.connection": "התחברות והתנתקות",
+      "acl.settings": "שינוי הגדרות",
+      "js.forbidden": "התפקיד שלך אינו מאפשר זאת. בקשו מבעל החנות לתת לתפקיד את ההרשאה של חיפוש AI."
     },
     "hi_IN": {
       "allowance": "इस महीने आपके :limit उत्तरों में से :left बाकी हैं। खोज और चैट उत्तर यही सीमा साझा करते हैं।",
@@ -561,7 +585,10 @@
       "status.unreachable": "आपकी दुकान अब भी जुड़ी है। हम जल्द ही फिर जाँचेंगे, और तब तक आपकी दुकान में कुछ नहीं बदला है।",
       "theme.text": "पट्टी को अपनी पसंद की जगह रखने के लिए यह वहाँ जोड़ें जहाँ वह दिखनी चाहिए। जब तक पट्टी बंद है, वह जगह खाली रहती है।",
       "theme.title": "आपकी थीम में",
-      "title": "Asyntai एआई खोज"
+      "title": "Asyntai एआई खोज",
+      "acl.connection": "कनेक्ट और डिस्कनेक्ट करें",
+      "acl.settings": "सेटिंग्स बदलें",
+      "js.forbidden": "आपकी भूमिका इसकी अनुमति नहीं देती। स्टोर के मालिक से अपनी भूमिका को एआई खोज की अनुमति देने के लिए कहें।"
     },
     "id": {
       "allowance": "Tersisa :left dari :limit balasan bulanan Anda. Pencarian dan balasan obrolan berbagi kuota ini.",
@@ -621,7 +648,10 @@
       "status.unreachable": "Toko Anda masih terhubung. Kami akan memeriksa lagi sebentar lagi, dan sementara itu tidak ada yang berubah di toko Anda.",
       "theme.text": "Untuk menempatkan bilah di tempat pilihan Anda, tambahkan ini di posisi yang diinginkan. Selama bilah mati, tempat itu tetap kosong.",
       "theme.title": "Di tema Anda",
-      "title": "Pencarian AI Asyntai"
+      "title": "Pencarian AI Asyntai",
+      "acl.connection": "Hubungkan dan putuskan",
+      "acl.settings": "Ubah pengaturan",
+      "js.forbidden": "Peran Anda tidak mengizinkan tindakan ini. Minta pemilik toko memberi peran Anda izin Pencarian AI."
     },
     "it": {
       "allowance": "Ti restano :left risposte su :limit questo mese. Le ricerche e le risposte in chat condividono lo stesso limite.",
@@ -681,7 +711,10 @@
       "status.unreachable": "Il tuo negozio è ancora collegato. Controlleremo di nuovo a breve e nel frattempo sul tuo negozio non è cambiato nulla.",
       "theme.text": "Per mettere la barra dove preferisci, aggiungi questo nel punto in cui deve comparire. Finché la barra è spenta, quel punto resta vuoto.",
       "theme.title": "Nel tuo tema",
-      "title": "Ricerca IA Asyntai"
+      "title": "Ricerca IA Asyntai",
+      "acl.connection": "Collegare e scollegare",
+      "acl.settings": "Modificare le impostazioni",
+      "js.forbidden": "Il tuo ruolo non consente questa azione. Chiedi al proprietario del negozio di assegnargli il permesso Ricerca IA."
     },
     "ja": {
       "allowance": "今月の応答は:limit件中:left件残っています。検索とチャットの応答は同じ枠を使います。",
@@ -741,7 +774,10 @@
       "status.unreachable": "ストアは接続されたままです。まもなく再確認します。その間、ストアに変化はありません。",
       "theme.text": "検索バーを好きな場所に置くには、表示したい位置にこれを追加してください。検索バーがオフの間、その場所は空のままです。",
       "theme.title": "テーマ内で",
-      "title": "Asyntai AI検索"
+      "title": "Asyntai AI検索",
+      "acl.connection": "接続と接続解除",
+      "acl.settings": "設定の変更",
+      "js.forbidden": "あなたのロールではこの操作は許可されていません。ストアのオーナーに AI検索 の権限を付与するよう依頼してください。"
     },
     "nl": {
       "allowance": "Nog :left van uw :limit antwoorden deze maand. Zoekopdrachten en chatantwoorden delen dit tegoed.",
@@ -801,7 +837,10 @@
       "status.unreachable": "Uw winkel is nog steeds verbonden. We kijken zo meteen opnieuw, en er is intussen niets veranderd in uw winkel.",
       "theme.text": "Wilt u de balk ergens anders, voeg dit dan toe op de plek waar hij moet staan. Zolang de balk uit staat, blijft die plek leeg.",
       "theme.title": "In uw thema",
-      "title": "Asyntai AI-zoeken"
+      "title": "Asyntai AI-zoeken",
+      "acl.connection": "Verbinden en ontkoppelen",
+      "acl.settings": "Instellingen wijzigen",
+      "js.forbidden": "Uw rol staat dit niet toe. Vraag de eigenaar van de winkel om uw rol de machtiging voor AI-zoeken te geven."
     },
     "pl": {
       "allowance": "Pozostało :left z :limit odpowiedzi w tym miesiącu. Wyszukiwania i odpowiedzi czatu dzielą ten sam limit.",
@@ -861,7 +900,10 @@
       "status.unreachable": "Twój sklep jest nadal połączony. Sprawdzimy to wkrótce ponownie, a w międzyczasie w sklepie nic się nie zmieniło.",
       "theme.text": "Aby umieścić pasek w wybranym przez siebie miejscu, dodaj to tam, gdzie ma się pojawić. Dopóki pasek jest wyłączony, miejsce pozostaje puste.",
       "theme.title": "W Twoim motywie",
-      "title": "Wyszukiwarka AI Asyntai"
+      "title": "Wyszukiwarka AI Asyntai",
+      "acl.connection": "Łączenie i rozłączanie",
+      "acl.settings": "Zmiana ustawień",
+      "js.forbidden": "Twoja rola na to nie pozwala. Poproś właściciela sklepu o nadanie jej uprawnienia Wyszukiwarka AI."
     },
     "pt_BR": {
       "allowance": "Restam :left das suas :limit respostas mensais. As buscas e as respostas do chat dividem esse limite.",
@@ -921,7 +963,10 @@
       "status.unreachable": "Sua loja continua conectada. Vamos verificar de novo em instantes e, nesse meio-tempo, nada mudou na sua loja.",
       "theme.text": "Para colocar a barra onde você quiser, adicione isto no ponto em que ela deve aparecer. Enquanto a barra estiver desligada, o espaço fica vazio.",
       "theme.title": "No seu tema",
-      "title": "Busca com IA da Asyntai"
+      "title": "Busca com IA da Asyntai",
+      "acl.connection": "Conectar e desconectar",
+      "acl.settings": "Alterar configurações",
+      "js.forbidden": "Sua função não permite esta ação. Peça ao dono da loja para dar a ela a permissão de Busca com IA."
     },
     "ro": {
       "allowance": "V-au rămas :left din cele :limit răspunsuri lunare. Căutările și răspunsurile din chat împart aceeași limită.",
@@ -981,7 +1026,10 @@
       "status.unreachable": "Magazinul dumneavoastră este în continuare conectat. Vom verifica din nou în scurt timp, iar între timp nimic nu s-a schimbat în magazin.",
       "theme.text": "Pentru a pune bara unde doriți, adăugați acest cod în locul în care trebuie să apară. Cât timp bara este oprită, locul rămâne gol.",
       "theme.title": "În tema dumneavoastră",
-      "title": "Căutare AI Asyntai"
+      "title": "Căutare AI Asyntai",
+      "acl.connection": "Conectare și deconectare",
+      "acl.settings": "Modificarea setărilor",
+      "js.forbidden": "Rolul tău nu permite această acțiune. Roagă proprietarul magazinului să îi acorde permisiunea Căutare AI."
     },
     "ru": {
       "allowance": "Осталось :left из :limit ответов в этом месяце. Поисковые запросы и ответы в чате расходуют общий лимит.",
@@ -1041,7 +1089,10 @@
       "status.unreachable": "Ваш магазин по-прежнему подключён. Мы скоро проверим ещё раз, а пока в магазине ничего не изменилось.",
       "theme.text": "Чтобы поставить строку в нужное вам место, добавьте это туда, где она должна появиться. Пока строка выключена, место остаётся пустым.",
       "theme.title": "В вашей теме",
-      "title": "ИИ-поиск Asyntai"
+      "title": "ИИ-поиск Asyntai",
+      "acl.connection": "Подключение и отключение",
+      "acl.settings": "Изменение настроек",
+      "js.forbidden": "Ваша роль не позволяет это сделать. Попросите владельца магазина выдать ей разрешение «ИИ-поиск»."
     },
     "sin": {
       "allowance": "මෙම මාසයේ ඔබේ පිළිතුරු :limit න් :left ක් ඉතිරිය. සෙවීම් සහ කතාබස් පිළිතුරු මෙම සීමාව බෙදාගනී.",
@@ -1101,7 +1152,10 @@
       "status.unreachable": "ඔබේ වෙළඳසැල තවමත් සම්බන්ධයි. අපි ඉක්මනින් නැවත පරීක්ෂා කරන අතර, එතෙක් ඔබේ වෙළඳසැලේ කිසිවක් වෙනස් වී නැත.",
       "theme.text": "තීරුව ඔබ කැමති තැනක තැබීමට, එය පෙනිය යුතු තැන මෙය එක් කරන්න. තීරුව නිවා ඇති තාක් එම තැන හිස්ව පවතී.",
       "theme.title": "ඔබේ තේමාවේ",
-      "title": "Asyntai AI සෙවීම"
+      "title": "Asyntai AI සෙවීම",
+      "acl.connection": "සම්බන්ධ කිරීම සහ විසන්ධි කිරීම",
+      "acl.settings": "සැකසුම් වෙනස් කිරීම",
+      "js.forbidden": "ඔබේ භූමිකාවට මෙය කිරීමට අවසර නැත. ඔබේ භූමිකාවට AI සෙවීම අවසරය ලබා දෙන ලෙස වෙළඳසැලේ හිමිකරුගෙන් ඉල්ලන්න."
     },
     "tr": {
       "allowance": "Bu ay :limit yanıtınızdan :left tanesi kaldı. Aramalar ve sohbet yanıtları aynı hakkı paylaşır.",
@@ -1161,7 +1215,10 @@
       "status.unreachable": "Mağazanız hâlâ bağlı. Kısa süre içinde tekrar kontrol edeceğiz, bu arada mağazanızda hiçbir şey değişmedi.",
       "theme.text": "Çubuğu istediğiniz yere koymak için bunu görünmesini istediğiniz yere ekleyin. Çubuk kapalıyken orası boş kalır.",
       "theme.title": "Temanızda",
-      "title": "Asyntai Yapay Zekâ Arama"
+      "title": "Asyntai Yapay Zekâ Arama",
+      "acl.connection": "Bağlanma ve bağlantıyı kesme",
+      "acl.settings": "Ayarları değiştirme",
+      "js.forbidden": "Rolünüz bu işleme izin vermiyor. Mağaza sahibinden rolünüze Yapay Zekâ Arama iznini vermesini isteyin."
     },
     "uk": {
       "allowance": "Залишилося :left із :limit відповідей цього місяця. Пошукові запити та відповіді чату мають спільний ліміт.",
@@ -1221,7 +1278,10 @@
       "status.unreachable": "Ваш магазин і далі підключений. Ми скоро перевіримо ще раз, а тим часом у магазині нічого не змінилося.",
       "theme.text": "Щоб поставити рядок у потрібне вам місце, додайте це там, де він має з'явитися. Поки рядок вимкнено, місце залишається порожнім.",
       "theme.title": "У вашій темі",
-      "title": "ШІ-пошук Asyntai"
+      "title": "ШІ-пошук Asyntai",
+      "acl.connection": "Підключення та відключення",
+      "acl.settings": "Зміна налаштувань",
+      "js.forbidden": "Ваша роль не дозволяє цього. Попросіть власника магазину надати їй дозвіл «ШІ-пошук»."
     },
     "zh_CN": {
       "allowance": "本月 :limit 次回复中还剩 :left 次。搜索和聊天回复共用同一额度。",
@@ -1281,7 +1341,10 @@
       "status.unreachable": "您的店铺仍处于连接状态。我们稍后会再次检查，在此期间店铺没有任何变化。",
       "theme.text": "若想把搜索栏放在自己选定的位置，请在该处加入这段代码。搜索栏关闭时，该位置保持为空。",
       "theme.title": "在您的主题中",
-      "title": "Asyntai AI 搜索"
+      "title": "Asyntai AI 搜索",
+      "acl.connection": "连接和断开连接",
+      "acl.settings": "更改设置",
+      "js.forbidden": "您的角色无权执行此操作。请让店主为您的角色授予 AI 搜索 权限。"
     }
   }
 }

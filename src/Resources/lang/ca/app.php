@@ -12,6 +12,11 @@ return [
             'title' => 'Cerca amb IA',
         ],
 
+        'acl' => [
+            'connection' => 'Connectar i desconnectar',
+            'settings'   => 'Canviar la configuració',
+        ],
+
         'title' => 'Cerca amb IA d\'Asyntai',
 
         'hero' => [
@@ -90,6 +95,7 @@ return [
             'confirm'     => 'Voleu desconnectar aquesta botiga d\'Asyntai? La barra de cerca s\'atura i la cerca habitual de la botiga torna a funcionar.',
             'unreachable' => 'No hem pogut contactar amb Asyntai. Comproveu que aquesta botiga pot fer peticions HTTPS cap enfora.',
             'expired'     => 'Aquest intent de connexió ha caducat. Torneu a prémer Connecta.',
+            'forbidden'   => 'El vostre rol no permet fer això. Demaneu al propietari de la botiga que li doni el permís de Cerca amb IA.',
         ],
 
     ],

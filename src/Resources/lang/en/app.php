@@ -10,6 +10,11 @@ return [
             'title' => 'AI Search',
         ],
 
+        'acl' => [
+            'connection' => 'Connect and disconnect',
+            'settings'   => 'Change settings',
+        ],
+
         'title' => 'Asyntai AI Search',
 
         'hero' => [
@@ -88,6 +93,7 @@ return [
             'confirm'     => 'Disconnect this store from Asyntai? The search bar stops, and your usual store search takes over.',
             'unreachable' => 'Could not reach Asyntai. Check that this store can make outgoing HTTPS requests.',
             'expired'     => 'This connection attempt has expired. Please press Connect again.',
+            'forbidden'   => 'Your role does not allow this. Ask the store owner to give it the AI Search permission.',
         ],
     ],
 ];

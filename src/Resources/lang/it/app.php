@@ -12,6 +12,11 @@ return [
             'title' => 'Ricerca IA',
         ],
 
+        'acl' => [
+            'connection' => 'Collegare e scollegare',
+            'settings'   => 'Modificare le impostazioni',
+        ],
+
         'title' => 'Ricerca IA Asyntai',
 
         'hero' => [
@@ -90,6 +95,7 @@ return [
             'confirm'     => 'Scollegare questo negozio da Asyntai? La barra di ricerca si ferma e torna a funzionare la ricerca di sempre.',
             'unreachable' => 'Non riusciamo a contattare Asyntai. Verifica che questo negozio possa fare richieste HTTPS in uscita.',
             'expired'     => 'Questo tentativo di collegamento è scaduto. Premi di nuovo Collega.',
+            'forbidden'   => 'Il tuo ruolo non consente questa azione. Chiedi al proprietario del negozio di assegnargli il permesso Ricerca IA.',
         ],
 
     ],

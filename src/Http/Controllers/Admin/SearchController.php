@@ -19,8 +19,32 @@ class SearchController extends Controller
     /** How long a handshake state stays valid. */
     private const STATE_TTL = 900;
 
+    /**
+     * Stop an admin whose role lacks the permission. Settings > Roles lists
+     * these three (see Config/acl.php).
+     *
+     * bouncer()->hasPermission() and not Bouncer::allow(): only the first
+     * lets a role with "All" access through, and the store owner has that.
+     */
+    private function authorise(string $permission): void
+    {
+        if (bouncer()->hasPermission($permission)) {
+            return;
+        }
+
+        if (request()->expectsJson()) {
+            abort(response()->json([
+                'error' => trans('asyntai-search::app.admin.js.forbidden'),
+            ], 403));
+        }
+
+        abort(403, trans('asyntai-search::app.admin.js.forbidden'));
+    }
+
     public function index()
     {
+        $this->authorise('asyntai-search');
+
         $siteId = State::siteId();
         $status = $siteId !== '' ? State::refreshIfStale() : null;
 
@@ -51,6 +75,8 @@ class SearchController extends Controller
             'placeholder'  => State::placeholder(),
             'feedEnabled'  => State::feedEnabled(),
             'feedUrl'      => State::feedUrl(),
+            'canConnect'   => bouncer()->hasPermission('asyntai-search.connection'),
+            'canSettings'  => bouncer()->hasPermission('asyntai-search.settings'),
         ]);
     }
 
@@ -60,6 +86,8 @@ class SearchController extends Controller
      */
     public function prepare(Request $request): JsonResponse
     {
+        $this->authorise('asyntai-search.connection');
+
         $state = 'bg_' . bin2hex(random_bytes(12));
 
         // Made here and sent once, in this request body, which is the only
@@ -127,6 +155,8 @@ class SearchController extends Controller
      */
     public function poll(Request $request): JsonResponse
     {
+        $this->authorise('asyntai-search.connection');
+
         $state = trim((string) $request->input('state', ''));
         $stored = State::get('state');
         $startedAt = (int) State::get('state_at', '0');
@@ -168,6 +198,8 @@ class SearchController extends Controller
      */
     public function finish(Request $request): JsonResponse
     {
+        $this->authorise('asyntai-search.connection');
+
         $siteId = trim((string) $request->input('site_id', ''));
 
         // The id is ours, so its shape is known. Anything else is a caller
@@ -188,6 +220,8 @@ class SearchController extends Controller
 
     public function disconnect(): JsonResponse
     {
+        $this->authorise('asyntai-search.connection');
+
         State::disconnect();
 
         return response()->json(['ok' => true]);
@@ -198,6 +232,8 @@ class SearchController extends Controller
      */
     public function refresh(): JsonResponse
     {
+        $this->authorise('asyntai-search');
+
         $status = State::refresh();
 
         return response()->json([
@@ -212,6 +248,8 @@ class SearchController extends Controller
      */
     public function saveSettings(Request $request): JsonResponse
     {
+        $this->authorise('asyntai-search.settings');
+
         $placement = (string) $request->input('placement', 'replace');
         State::set('placement', $placement === 'manual' ? 'manual' : 'replace');
 

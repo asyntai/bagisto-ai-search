@@ -12,6 +12,11 @@ return [
             'title' => 'Wyszukiwarka AI',
         ],
 
+        'acl' => [
+            'connection' => 'Łączenie i rozłączanie',
+            'settings'   => 'Zmiana ustawień',
+        ],
+
         'title' => 'Wyszukiwarka AI Asyntai',
 
         'hero' => [
@@ -90,6 +95,7 @@ return [
             'confirm'     => 'Odłączyć ten sklep od Asyntai? Pasek wyszukiwania przestanie działać, a wróci Twoja zwykła wyszukiwarka.',
             'unreachable' => 'Nie można połączyć się z Asyntai. Sprawdź, czy ten sklep może wysyłać wychodzące żądania HTTPS.',
             'expired'     => 'Ta próba połączenia wygasła. Naciśnij ponownie Połącz.',
+            'forbidden'   => 'Twoja rola na to nie pozwala. Poproś właściciela sklepu o nadanie jej uprawnienia Wyszukiwarka AI.',
         ],
 
     ],

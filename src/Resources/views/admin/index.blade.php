@@ -35,11 +35,13 @@
                     @lang('asyntai-search::app.admin.hero.text')
                 </p>
 
-                <p class="mt-4">
-                    <button type="button" id="asyntai-connect" class="primary-button">
-                        @lang('asyntai-search::app.admin.hero.button')
-                    </button>
-                </p>
+                @if ($canConnect)
+                    <p class="mt-4">
+                        <button type="button" id="asyntai-connect" class="primary-button">
+                            @lang('asyntai-search::app.admin.hero.button')
+                        </button>
+                    </p>
+                @endif
 
                 <p id="asyntai-open-link" class="mt-3 hidden text-sm">
                     <a href="#" target="_blank" rel="noopener" class="text-blue-600 hover:underline">
@@ -96,9 +98,11 @@
                         @lang('asyntai-search::app.admin.check_now')
                     </a>
 
+                    @if ($canConnect)
                     <a href="#" id="asyntai-disconnect" class="text-red-600 hover:underline">
                         @lang('asyntai-search::app.admin.disconnect')
                     </a>
+                    @endif
                 </p>
             </div>
 
@@ -126,6 +130,7 @@
                 </p>
 
                 <form id="asyntai-settings" class="mt-3" onsubmit="return false;">
+                    <fieldset @unless ($canSettings) disabled @endunless>
                     <div class="mb-4">
                         <label class="mb-1.5 block text-xs font-medium text-gray-800 dark:text-white" for="asyntai-placement">
                             @lang('asyntai-search::app.admin.settings.placement')
@@ -189,9 +194,12 @@
                         </label>
                     </div>
 
-                    <button type="button" id="asyntai-save" class="primary-button">
-                        @lang('asyntai-search::app.admin.settings.save')
-                    </button>
+                    @if ($canSettings)
+                        <button type="button" id="asyntai-save" class="primary-button">
+                            @lang('asyntai-search::app.admin.settings.save')
+                        </button>
+                    @endif
+                    </fieldset>
                 </form>
             </div>
 
@@ -231,6 +239,7 @@
                 failed: @json(trans('asyntai-search::app.admin.js.failed')),
                 timeout: @json(trans('asyntai-search::app.admin.js.timeout')),
                 signedOut: @json(trans('asyntai-search::app.admin.js.signed_out')),
+                forbidden: @json(trans('asyntai-search::app.admin.js.forbidden')),
                 confirm: @json(trans('asyntai-search::app.admin.js.confirm')),
                 saved: @json(trans('asyntai-search::app.admin.settings.saved'))
             };
@@ -259,7 +268,14 @@
                     },
                     body: JSON.stringify(data || {})
                 }).then(function (response) {
-                    if (response.status === 401 || response.status === 403 || response.status === 419) {
+                    if (response.status === 403) {
+                        return response.text().then(function (text) {
+                            var denied;
+                            try { denied = JSON.parse(text); } catch (e) { denied = null; }
+                            throw new Error((denied && denied.error) || strings.forbidden);
+                        });
+                    }
+                    if (response.status === 401 || response.status === 419) {
                         var lost = new Error(strings.signedOut);
                         lost.signedOut = true;
                         throw lost;

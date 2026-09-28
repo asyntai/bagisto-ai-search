@@ -12,6 +12,11 @@ return [
             'title' => 'Căutare AI',
         ],
 
+        'acl' => [
+            'connection' => 'Conectare și deconectare',
+            'settings'   => 'Modificarea setărilor',
+        ],
+
         'title' => 'Căutare AI Asyntai',
 
         'hero' => [
@@ -90,6 +95,7 @@ return [
             'confirm'     => 'Deconectați acest magazin de la Asyntai? Bara de căutare se oprește, iar căutarea obișnuită preia din nou.',
             'unreachable' => 'Nu am putut contacta Asyntai. Verificați dacă acest magazin poate face cereri HTTPS către exterior.',
             'expired'     => 'Această încercare de conectare a expirat. Apăsați din nou Conectați.',
+            'forbidden'   => 'Rolul tău nu permite această acțiune. Roagă proprietarul magazinului să îi acorde permisiunea Căutare AI.',
         ],
 
     ],

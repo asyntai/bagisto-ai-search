@@ -67,9 +67,15 @@ Laravel picks the service provider up on its own.
 * **Placeholder text** and **accent colour.** Leave empty to use what is set in your Asyntai dashboard.
 * **Share my catalogue with Asyntai.** On by default. Switch it off and the bar searches your pages only.
 
+## Permissions
+
+The package adds **AI Search** to **Settings > Roles**, with two permissions under it: **Connect and disconnect**, and **Change settings**. A role without **AI Search** does not see the menu entry or the page. A role with only **AI Search** can see the page and its status, but cannot change anything.
+
 ## The catalogue feed
 
 The package answers on `/asyntai-search/feed`. Every request must carry a fresh timestamp and an HMAC-SHA256 signature made with a token that only your store and Asyntai hold, so nobody else can read it. It lists the products a shopper can see, with the prices a shopper would pay, and your enabled categories with their names, descriptions and links. There is no route to orders, customers or settings.
+
+When you create, save, disable or delete a product, the package tells Asyntai once, after the page has been sent, and Asyntai reads the catalogue again, so a product you disable leaves the search results.
 
 ## Test servers
 

@@ -12,6 +12,11 @@ return [
             'title' => 'Busca com IA',
         ],
 
+        'acl' => [
+            'connection' => 'Conectar e desconectar',
+            'settings'   => 'Alterar configurações',
+        ],
+
         'title' => 'Busca com IA da Asyntai',
 
         'hero' => [
@@ -90,6 +95,7 @@ return [
             'confirm'     => 'Desconectar esta loja da Asyntai? A barra de busca para e a busca de sempre volta a funcionar.',
             'unreachable' => 'Não conseguimos falar com a Asyntai. Verifique se esta loja pode fazer requisições HTTPS de saída.',
             'expired'     => 'Esta tentativa de conexão expirou. Pressione Conectar novamente.',
+            'forbidden'   => 'Sua função não permite esta ação. Peça ao dono da loja para dar a ela a permissão de Busca com IA.',
         ],
 
     ],
