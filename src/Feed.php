@@ -379,8 +379,12 @@ class Feed
 
         $out = [
             'id'   => $productId,
-            'name' => trim($this->decode((string) $flat->name)),
+            'name' => $this->plainName((string) $flat->name),
         ];
+
+        if ($out['name'] === '') {
+            return null;
+        }
 
         $description = $this->plainText((string) ($flat->description ?? ''));
 
@@ -417,13 +421,14 @@ class Feed
 
         $out['currency'] = $this->currency();
 
-        $quantity = $this->quantity($product);
+        $saleable = $this->saleable($product);
+        $quantity = $this->quantity($product, $saleable);
 
         if ($quantity !== null) {
             $out['quantity'] = $quantity;
         }
 
-        $out['stock_status'] = $this->saleable($product) ? 'In Stock' : 'Out Of Stock';
+        $out['stock_status'] = $saleable ? 'In Stock' : 'Out Of Stock';
 
         $categories = $this->categoryNames($product);
 
@@ -469,13 +474,38 @@ class Feed
         return [$regular, $final];
     }
 
-    private function quantity($product): ?int
+    /**
+     * How many a shopper could buy, or null when the product has no count
+     * of its own to give.
+     *
+     * Grouped, bundle and configurable products hold no inventory: their
+     * stock lives in the products they are built from, and Bagisto answers 0
+     * for them however much of those there is. Virtual, downloadable and
+     * booking products are not counted at all. For all of these the field is
+     * left out, and stock_status says whether the product can be bought.
+     *
+     * A counted product that is still for sale at 0 (backorders, or stock
+     * not managed) is left out too, so the feed never says "0" and
+     * "In Stock" about the same product.
+     */
+    private function quantity($product, bool $saleable): ?int
     {
         try {
-            return (int) $product->totalQuantity();
+            if (in_array((string) $product->type, ['grouped', 'bundle', 'configurable'], true)
+                || ! $product->getTypeInstance()->isStockable()) {
+                return null;
+            }
+
+            $quantity = (int) $product->totalQuantity();
         } catch (\Throwable $e) {
             return null;
         }
+
+        if ($quantity <= 0 && $saleable) {
+            return null;
+        }
+
+        return max(0, $quantity);
     }
 
     private function saleable($product): bool
@@ -511,6 +541,27 @@ class Feed
     private function decode(string $value): string
     {
         return html_entity_decode($value, ENT_QUOTES | ENT_HTML5, 'UTF-8');
+    }
+
+    /**
+     * A product name as plain text.
+     *
+     * Bagisto stores a name with markup in it escaped ("&lt;b&gt;"). Decoding
+     * alone would hand that markup on live, so tags are stripped after every
+     * decode, the same way a description is. Punctuation, accents and emoji
+     * pass through unchanged.
+     */
+    private function plainName(string $name): string
+    {
+        $text = $name;
+
+        // Twice at most: a name escaped twice over ("&amp;lt;b&amp;gt;") is
+        // still markup once both layers are off.
+        for ($i = 0; $i < 2; $i++) {
+            $text = $this->plainText($text);
+        }
+
+        return $text;
     }
 
     /** Description HTML reduced to the sentences a shopper would read. */
