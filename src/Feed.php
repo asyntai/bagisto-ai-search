@@ -44,6 +44,9 @@ class Feed
     /** Longest description we send. Asyntai truncates again; this saves bandwidth. */
     public const MAX_DESCRIPTION = 2000;
 
+    /** Layers of escaping undone before tags are removed. Real data has one or two. */
+    public const MAX_DECODE_PASSES = 5;
+
     /** Categories sent with the first page. Past this a shop is browsing, not searching. */
     public const MAX_CATEGORIES = 300;
 
@@ -543,34 +546,54 @@ class Feed
         return html_entity_decode($value, ENT_QUOTES | ENT_HTML5, 'UTF-8');
     }
 
-    /**
-     * A product name as plain text.
-     *
-     * Bagisto stores a name with markup in it escaped ("&lt;b&gt;"). Decoding
-     * alone would hand that markup on live, so tags are stripped after every
-     * decode, the same way a description is. Punctuation, accents and emoji
-     * pass through unchanged.
-     */
+    /** A product name as plain text: the same rules as a description. */
     private function plainName(string $name): string
     {
-        $text = $name;
-
-        // Twice at most: a name escaped twice over ("&amp;lt;b&amp;gt;") is
-        // still markup once both layers are off.
-        for ($i = 0; $i < 2; $i++) {
-            $text = $this->plainText($text);
-        }
-
-        return $text;
+        return $this->plainText($name);
     }
 
-    /** Description HTML reduced to the sentences a shopper would read. */
+    /**
+     * HTML reduced to the text a shopper would read.
+     *
+     * Entities are decoded FIRST, until nothing changes, and tags are removed
+     * after that, once. In the other order an escaped value comes back as
+     * live markup: Bagisto stores "<b>" in a name as "&lt;b&gt;", and a
+     * strip-then-decode turns that into "<b>" after the stripping is done.
+     * Decoding to a fixed point also undoes a value escaped twice or more.
+     *
+     * Because the text is decoded before the strip, a tag is matched only
+     * when "<" is followed by a letter or "/", so "5 < 10 cm" keeps its
+     * words.
+     */
     private function plainText(string $html): string
     {
-        $text = preg_replace('/<script[\s\S]*?<\/script>/i', ' ', $html);
-        $text = preg_replace('/<style[\s\S]*?<\/style>/i', ' ', (string) $text);
-        $text = preg_replace('/<[^>]+>/', ' ', (string) $text);
-        $text = $this->decode((string) $text);
+        $text = $html;
+
+        for ($i = 0; $i < self::MAX_DECODE_PASSES; $i++) {
+            $decoded = $this->decode($text);
+
+            if ($decoded === $text) {
+                break;
+            }
+
+            $text = $decoded;
+        }
+
+        // Until nothing changes: removing one tag can join the pieces around
+        // it into another ("<scr<b>ipt>").
+        for ($i = 0; $i < self::MAX_DECODE_PASSES; $i++) {
+            $before = $text;
+            $text = preg_replace('/<script\b[\s\S]*?(?:<\/script\s*>|$)/i', ' ', (string) $text);
+            $text = preg_replace('/<style\b[\s\S]*?(?:<\/style\s*>|$)/i', ' ', (string) $text);
+            $text = preg_replace('/<!--[\s\S]*?(?:-->|$)/', ' ', (string) $text);
+            $text = preg_replace('/<\/?[a-zA-Z][^<>]*>/', ' ', (string) $text);
+            // A tag cut off at the very end, with no ">" to close it.
+            $text = preg_replace('/<\/?[a-zA-Z][^<>]*$/', ' ', (string) $text);
+
+            if ($text === $before) {
+                break;
+            }
+        }
 
         // A non-breaking space is not matched by \s, so it is named here.
         $text = preg_replace('/[\s\x{00A0}]+/u', ' ', (string) $text);
