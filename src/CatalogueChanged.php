@@ -45,10 +45,44 @@ class CatalogueChanged
         self::$dirty = false;
 
         try {
+            if (State::siteId() === '' || State::feedToken() === '' || ! State::feedEnabled()) {
+                return;
+            }
+
+            $mode = State::backgroundMode();
+            $console = app()->runningInConsole();
+
+            // Under mod_php the admin's connection stays open until this
+            // finishes, so a store with a real queue hands it to the queue.
+            // Signed inside the job, so a busy queue cannot outlive the
+            // timestamp.
+            if ($mode === 'queue' && ! $console) {
+                dispatch(function () {
+                    CatalogueChanged::send(5);
+                });
+
+                return;
+            }
+
+            // FPM has already sent the page, and an import on the command
+            // line has nobody waiting. Otherwise keep the wait short: the
+            // answer is a bare 202.
+            self::send(($mode === 'fpm' || $console) ? 5 : 2);
+        } catch (\Throwable $e) {
+            // The daily re-read still picks the change up.
+        }
+    }
+
+    /**
+     * Send the signed message now. Never throws.
+     */
+    public static function send(int $timeout): void
+    {
+        try {
             $siteId = State::siteId();
             $token = State::feedToken();
 
-            if ($siteId === '' || $token === '' || ! State::feedEnabled()) {
+            if ($siteId === '' || $token === '') {
                 return;
             }
 
@@ -58,7 +92,7 @@ class CatalogueChanged
                 'site_id' => $siteId,
                 'ts'      => $ts,
                 'sig'     => self::signature($siteId, $ts, $token),
-            ], 5);
+            ], $timeout);
         } catch (\Throwable $e) {
             // The daily re-read still picks the change up.
         }

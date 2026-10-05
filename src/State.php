@@ -313,10 +313,54 @@ class State
             return;
         }
 
+        $mode = self::backgroundMode();
+
+        // No way to answer outside the shopper's request: leave the stamp
+        // alone, so the scheduler and the settings screen still see the
+        // answer as stale and refresh it themselves.
+        if ($mode === null) {
+            return;
+        }
+
         // Claim the attempt first. If the call then fails, the next check is
         // a whole interval away rather than on the very next page view.
         self::set('status_at', (string) time());
+
+        if ($mode === 'queue') {
+            dispatch(function () {
+                State::refresh();
+            });
+
+            return;
+        }
+
         self::refresh(4);
+    }
+
+    /**
+     * How a refresh can run without making anybody wait, or null if it
+     * cannot.
+     *
+     * 'fpm': PHP-FPM has already handed the response back
+     * (fastcgi_finish_request), so the call costs the shopper nothing.
+     * 'queue': under mod_php the connection stays open until the request
+     * ends, so the call goes to the store's queue instead, when it has a
+     * real one. Neither: the scheduler (every ten minutes) and the settings
+     * screen keep the answer current, and no shopper ever waits.
+     */
+    public static function backgroundMode(): ?string
+    {
+        if (function_exists('fastcgi_finish_request')) {
+            return 'fpm';
+        }
+
+        try {
+            $driver = (string) config('queue.default', 'sync');
+        } catch (\Throwable $e) {
+            $driver = 'sync';
+        }
+
+        return ($driver !== '' && $driver !== 'sync' && $driver !== 'null') ? 'queue' : null;
     }
 
     private static function maxAge(array $status): int

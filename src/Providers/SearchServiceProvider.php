@@ -113,7 +113,12 @@ class SearchServiceProvider extends ServiceProvider
             $request = $this->app['request'];
             $admin = trim((string) config('app.admin_url', 'admin'), '/');
 
-            if ($request->is($admin) || $request->is($admin . '/*')) {
+            // Under PHP-FPM the admin has its page already; anywhere else
+            // the same rules as a shopper's page apply, so no admin page
+            // waits on Asyntai either. The settings screen still refreshes
+            // when it is opened.
+            if (($request->is($admin) || $request->is($admin . '/*'))
+                && State::backgroundMode() === 'fpm') {
                 State::refreshIfStale();
             } else {
                 State::refreshFromSite();

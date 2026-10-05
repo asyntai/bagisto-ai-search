@@ -86,6 +86,43 @@ ASYNTAI_SEARCH_ORIGIN=https://staging.example.com
 ASYNTAI_SEARCH_SCRIPT=https://staging.example.com/static/js/search-widget.js
 ```
 
+## Running the tests
+
+The package ships Pest tests in `tests/Feature` and `tests/Unit`, laid out like Bagisto's core packages. They run inside your Bagisto application, against its database, with every test rolled back. No call leaves the machine.
+
+Register them the way the core packages are registered. In the application's `composer.json`, under `autoload-dev.psr-4`:
+
+```json
+"Asyntai\\Search\\Tests\\": "vendor/asyntai/bagisto-ai-search/tests"
+```
+
+In `tests/Pest.php`:
+
+```php
+uses(Asyntai\Search\Tests\SearchTestCase::class)->in('../vendor/asyntai/bagisto-ai-search/tests');
+```
+
+In `phpunit.xml`, under `<testsuites>`:
+
+```xml
+<testsuite name="Asyntai Search Feature Test">
+    <directory suffix="Test.php">vendor/asyntai/bagisto-ai-search/tests/Feature</directory>
+</testsuite>
+
+<testsuite name="Asyntai Search Unit Test">
+    <directory suffix="Test.php">vendor/asyntai/bagisto-ai-search/tests/Unit</directory>
+</testsuite>
+```
+
+Then:
+
+```
+composer dump-autoload
+vendor/bin/pest --testsuite="Asyntai Search Feature Test,Asyntai Search Unit Test"
+```
+
+If you installed the package by hand into `packages/Asyntai/Search`, use that path in place of `vendor/asyntai/bagisto-ai-search`.
+
 ## Documentation and support
 
 Full guide: https://asyntai.com/documentation/bagisto-ai-search/

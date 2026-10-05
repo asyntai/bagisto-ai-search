@@ -460,14 +460,14 @@ class Feed
 
         try {
             $type = $product->getTypeInstance();
-            $regular = (float) $type->getRegularMinimalPrice();
-            $final = (float) $type->getMinimalPrice();
+            $regular = $this->number($type->getRegularMinimalPrice());
+            $final = $this->number($type->getMinimalPrice());
         } catch (\Throwable $e) {
             // Fall through to the flat table, which always has a number.
         }
 
         if ($regular === null && isset($flat->price)) {
-            $regular = (float) $flat->price;
+            $regular = $this->number($flat->price);
         }
 
         if ($final === null) {
@@ -475,6 +475,20 @@ class Feed
         }
 
         return [$regular, $final];
+    }
+
+    /**
+     * A price as a float, or null when there is none. Checked BEFORE the
+     * cast: (float) null is 0.0, which would send a free product and stop
+     * the flat-table fallback from ever running.
+     */
+    private function number($value): ?float
+    {
+        if ($value === null || $value === '' || ! is_numeric($value)) {
+            return null;
+        }
+
+        return (float) $value;
     }
 
     /**
